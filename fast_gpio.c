@@ -7,8 +7,13 @@
 #include <stdint.h>
 #include <string.h>
 #include <unistd.h>
+
+#define GPIO_REGISTER_BASE 0x3F200000
  
 static volatile uint32_t *gpio;
+
+
+
  
 int main(int argc, char **argv)
 {
@@ -21,7 +26,7 @@ int main(int argc, char **argv)
 	}
  
 	// map a page of memory to gpio at offset 0x20200000 which is where GPIO goodnessstarts
-	gpio = (uint32_t *)mmap(0, getpagesize(), PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0x20200000);
+	gpio = (uint32_t *)mmap(0, getpagesize(), PROT_READ|PROT_WRITE, MAP_SHARED, fd, GPIO_REGISTER_BASE);
 	if (gpio == 0){
 		printf("Mmap failed: %s\n", strerror(errno));
 		return -1;

@@ -12,9 +12,7 @@ int main(void)
     while (1) {
         digitalWrite(led, HIGH);
         //delay(500);
-        for (int i = 0; i < 1e1; i++);
         digitalWrite(led, LOW);
         //delay(500);
-        for (int i = 0; i < 1e1; i++);
     }
 }
